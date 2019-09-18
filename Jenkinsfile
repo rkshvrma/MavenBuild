@@ -19,11 +19,12 @@ stage ('Sonar Analysis'){
 stage ('Archive Artifacts'){
 	archiveArtifacts artifacts: 'target/*.war'
 }
+	stage ('Notification'){
+	slackSend color: 'good', message: 'Message from Jenkins Pipeline'
+}
 	
 stage ('Deployment'){
 	//sh 'cp target/*.war /opt/tomcat8/webapps'
 }
-	stage ('Notification'){
-	slackSend color: 'good', message: 'Message from Jenkins Pipeline'
-}
+	
 }
